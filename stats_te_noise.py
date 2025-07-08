@@ -8,8 +8,10 @@ import matplotlib.pyplot as plt
 plt.style.use('style.mplstyle')
 
 import utils
+import filter
+import stats
 
-data_dir = "./data/"
+data_dir = "../data/"
 fig_dir = '../figures/'
 mesh_file = os.path.join(data_dir, "SherFWHsolid1_grid.h5")
 data_file = os.path.join(data_dir, "SherFWHsolid1_p_raw_data_250.h5")
@@ -56,9 +58,8 @@ ax.set_ylabel('$z$ index')
 #    Pressure spectrum at trailing edge
 # ==============================================
 fig, ax = plt.subplots()
+xf_w, spp = stats.spectrum(p_te, fs=fs, nperseg=nperseg, noverlap=noverlap, window=window, axis=0)
 
-xf_w, spp =  sg.welch(p_te, fs=fs, nperseg=nperseg, noverlap=noverlap, window=window, axis=0)
-spp = np.mean(spp, axis=1)
 ax.plot(xf_w, 10*np.log10(spp/p_ref**2))
 
 ax.set_xscale('log')
@@ -72,18 +73,16 @@ plt.savefig(os.path.join(fig_dir, 'spectrum_te.pdf'), bbox_inches='tight', trans
 # ==============================================
 #    Coherence length
 # ==============================================
-
-p0 = p_te[:, n_sens//2]  # Reference sensor (midspan)
-
-gamma = []
-f0 = utils.butter_bandpass_filter(p0, 1600, 8000, fs, order=2)
-
-for i in range(n_sens):
-    fi = utils.butter_bandpass_filter(p_te[:, i], 1600, 8000, fs, order=2)
-    f, coh = sg.coherence(f0, fi,fs=fs, nperseg=nperseg, noverlap=noverlap, window=window)
-    gamma.append(coh)
-
-gamma = np.array(gamma)
+f, gamma = stats.coherence_function(
+    p_te,
+    ref_index=n_sens//2,  # Midspan sensor
+    filter=True,
+    flims=(1600, 8000),
+    fs=fs,
+    nperseg=nperseg,
+    noverlap=noverlap,
+    window=window
+)
 
 X, Y = np.meshgrid(f, z)
  
@@ -95,7 +94,17 @@ ax.set_xlabel('$f$ [Hz]')
 ax.set_ylabel('$z/c$ [-]')
 plt.savefig(os.path.join(fig_dir, 'coherence_funct_te.png'), bbox_inches='tight', transparent=True, dpi=300)
 
-lz = np.trapz(np.sqrt(gamma), x=z, axis=0)  # Coherence length
+f, lz = stats.coherence_length(
+    p_te,
+    z=z,
+    ref_index=n_sens//2,  # Midspan sensor
+    filter=True,
+    flims=(1600, 8000),
+    fs=fs,
+    nperseg=nperseg,
+    noverlap=noverlap,
+    window=window
+)
 
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(f, lz)
