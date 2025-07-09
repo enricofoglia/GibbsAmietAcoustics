@@ -1,3 +1,4 @@
+# GibbsAmietAcoustics
 
 # ✅ Git Branch & Pull Request Checklist
 
@@ -48,11 +49,3 @@
 - Use `draft` PRs if work is still in progress
 - Use `squash & merge` to keep commit history clean
 - Tag releases with version numbers for important milestones
-"""
-
-# Save to a markdown file
-file_path = "/mnt/data/git-branch-pr-checklist.md"
-with open(file_path, "w") as f:
-    f.write(checklist_md)
-
-file_path
