@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.signal as sg
 
-from filter import butter_bandpass_filter
+from .filter import butter_bandpass_filter
 
 def spectrum(
         data,

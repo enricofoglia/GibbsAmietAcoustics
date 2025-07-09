@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gibbs-amiet"
+version = "0.1.0"
+description = "A package for aifoil self-noise modeling using Gibbs distributions"
+readme = "README.md"
+requires-python = ">=3.8"
+
+authors = [
+  { name="Enrico Foglia", email="enricofoglia99@gmail.com" }
+]
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

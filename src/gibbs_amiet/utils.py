@@ -2,7 +2,6 @@ import os
 import h5py
 
 import numpy as np
-import scipy.signal as sg
 
 def print_name(name):
     print(name)
