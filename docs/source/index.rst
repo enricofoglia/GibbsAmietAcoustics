@@ -6,9 +6,7 @@
 gibbs_amiet documentation
 =========================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+:code:`gibbs_amiet` is a Python package developed to compute the trailing-edge noise of isolated airfoils using the Amiet model with synthetic input data. The turbulent fluctuations are sampled from a Gibbs distribution, and then processed inside the package to compute the noise.
 
 
 .. toctree::
