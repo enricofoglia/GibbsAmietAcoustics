@@ -1,23 +1,21 @@
 import os
+import sys
 
 import numpy as np
-import scipy.signal as sg
 
 import matplotlib.pyplot as plt
 # Matplotlib global settings
 plt.style.use('style.mplstyle')
 
-import utils
-import filter
-import stats
+import gibbs_amiet as ga
 
 data_dir = "../data/"
 fig_dir = '../figures/'
 mesh_file = os.path.join(data_dir, "SherFWHsolid1_grid.h5")
 data_file = os.path.join(data_dir, "SherFWHsolid1_p_raw_data_250.h5")
 
-info_dict = utils.get_data_info(data_file, verbose=False)
-p_te = utils.extract_pressure_te(data_file, 100, 2**12, False)
+info_dict = ga.utils.get_data_info(data_file, verbose=False)
+p_te = ga.utils.extract_pressure_te(data_file, 100, 2**12, False)
 
 # ==============================================
 #    De-normalize the data
@@ -58,7 +56,7 @@ ax.set_ylabel('$z$ index')
 #    Pressure spectrum at trailing edge
 # ==============================================
 fig, ax = plt.subplots()
-xf_w, spp = stats.spectrum(p_te, fs=fs, nperseg=nperseg, noverlap=noverlap, window=window, axis=0)
+xf_w, spp = ga.stats.spectrum(p_te, fs=fs, nperseg=nperseg, noverlap=noverlap, window=window, axis=0)
 
 ax.plot(xf_w, 10*np.log10(spp/p_ref**2))
 
@@ -73,7 +71,7 @@ plt.savefig(os.path.join(fig_dir, 'spectrum_te.pdf'), bbox_inches='tight', trans
 # ==============================================
 #    Coherence length
 # ==============================================
-f, gamma = stats.coherence_function(
+f, gamma = ga.stats.coherence_function(
     p_te,
     ref_index=n_sens//2,  # Midspan sensor
     filter=True,
@@ -94,7 +92,7 @@ ax.set_xlabel('$f$ [Hz]')
 ax.set_ylabel('$z/c$ [-]')
 plt.savefig(os.path.join(fig_dir, 'coherence_funct_te.png'), bbox_inches='tight', transparent=True, dpi=300)
 
-f, lz = stats.coherence_length(
+f, lz = ga.stats.coherence_length(
     p_te,
     z=z,
     ref_index=n_sens//2,  # Midspan sensor
