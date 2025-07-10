@@ -1,21 +1,16 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "gibbs-amiet"
+name = "gibbs_amiet"
 version = "0.1.0"
-description = "A package for aifoil self-noise modeling using Gibbs distributions"
+description = "Compute trailing-edge noise of isolated airfoils using the Amiet models and Gibbs distributions"
 readme = "README.md"
-requires-python = ">=3.8"
-
-authors = [
-  { name="Enrico Foglia", email="enricofoglia99@gmail.com" }
+requires-python = ">=3.10"
+dependencies = [
+    "h5py>=3.14.0",
+    "matplotlib>=3.10.3",
+    "numpy>=2.2.6",
+    "scipy>=1.15.3",
 ]
 
-
-[tool.setuptools]
-package-dir = {"" = "src"}
-
-[tool.setuptools.packages.find]
-where = ["src"]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
