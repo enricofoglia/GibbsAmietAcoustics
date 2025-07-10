@@ -1,8 +1,18 @@
 # GibbsAmietAcoustics
 
-# ✅ Git Branch & Pull Request Checklist
+## Documentation
+After dowloading the repository, it is possible to build an html documentation
+by running:
+.. code-block:: bash
+   :linenos:
+   cd docs
+   make html
 
-## 🏗️ Before Starting a Branch
+This will create a all the necessary files. The documentation can be accessed by opening :code:`docs/build/html/index.html` in any browser.
+
+## ✅ Git Branch & Pull Request Checklist
+
+### 🏗️ Before Starting a Branch
 - [ ] Pull the latest `main` branch  
   `git checkout main && git pull origin main`
 - [ ] Create a new branch with a descriptive name  
@@ -10,7 +20,7 @@
 
 ---
 
-## 🧑‍💻 While Working on the Branch
+### 🧑‍💻 While Working on the Branch
 - [ ] Keep changes focused on **one feature or fix**
 - [ ] Avoid unrelated "quick fixes" — make a note and do them later
 - [ ] Commit frequently with meaningful messages:
@@ -20,7 +30,7 @@
 
 ---
 
-## 🔄 Before Pushing or Opening a PR
+### 🔄 Before Pushing or Opening a PR
 - [ ] Merge latest `main` into your branch  
   `git fetch origin && git merge origin/main`
 - [ ] Resolve any conflicts cleanly
@@ -29,7 +39,7 @@
 
 ---
 
-## 🚀 Creating a Pull Request
+### 🚀 Creating a Pull Request
 - [ ] PR title is clear and describes the purpose (avoid vague titles)
 - [ ] Description explains what was changed and why
 - [ ] Screenshots or GIFs included if UI is affected
@@ -38,14 +48,14 @@
 
 ---
 
-## 🧹 After PR is Merged
+### 🧹 After PR is Merged
 - [ ] Delete the feature branch (on GitHub or via `git push origin --delete`)
 - [ ] Pull the updated `main` to your local  
   `git checkout main && git pull origin main`
 
 ---
 
-## ✨ Pro Tips (Optional)
+### ✨ Pro Tips (Optional)
 - Use `draft` PRs if work is still in progress
 - Use `squash & merge` to keep commit history clean
 - Tag releases with version numbers for important milestones
