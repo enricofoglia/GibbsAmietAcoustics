@@ -3,12 +3,13 @@
 ## Documentation
 After dowloading the repository, it is possible to build an html documentation
 by running:
-.. code-block:: bash
-   :linenos:
+
+```bash
    cd docs
    make html
+```
 
-This will create a all the necessary files. The documentation can be accessed by opening :code:`docs/build/html/index.html` in any browser.
+This will create a all the necessary files. The documentation can be accessed by opening `docs/build/html/index.html` in any browser.
 
 ## ✅ Git Branch & Pull Request Checklist
 
