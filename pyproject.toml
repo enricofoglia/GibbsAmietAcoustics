@@ -1,7 +1,16 @@
 [project]
-name = "src"
+name = "gibbs_amiet"
 version = "0.1.0"
-description = "Add your description here"
+description = "Compute trailing-edge noise of isolated airfoils using the Amiet models and Gibbs distributions"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "h5py>=3.14.0",
+    "matplotlib>=3.10.3",
+    "numpy>=2.2.6",
+    "scipy>=1.15.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
