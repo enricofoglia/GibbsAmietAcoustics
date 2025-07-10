@@ -2,10 +2,10 @@ import h5py
 
 import numpy as np
 
-def print_name(name):
+def _print_name(name):
     print(name)
 
-def print_info(name, object):
+def _print_info(name, object):
     print(name)
     print(type(object))
     try:
@@ -14,12 +14,14 @@ def print_info(name, object):
         pass
 
 def rotate_airfoil(x,y,alpha_deg):
+    '''Rotate airfoil by :obj:`alpha_deg` degrees'''
     alpha = alpha_deg*np.pi/180
     x_rot = x*np.cos(alpha) - y*np.sin(alpha)
     y_rot = x*np.sin(alpha) + y*np.cos(alpha)
     return x_rot, y_rot
 
 def find_le(mesh_file):
+    '''Find leading edge of geometry passed as a path to the mesh file.'''
     with h5py.File(mesh_file, "r") as f:
         x = f['x']
         y = f['y']
@@ -40,6 +42,7 @@ def extract_pressure_te(
         ):
     '''
     Extracts the pressure at the trailing edge from the data file.
+
     Parameters
     ----------
     data_file : str
