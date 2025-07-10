@@ -1,18 +1,17 @@
 import os
-import sys
 
 import numpy as np
 
 import matplotlib.pyplot as plt
-# Matplotlib global settings
-plt.style.use('style.mplstyle')
 
 import gibbs_amiet as ga
+
+# Matplotlib global settings
+plt.style.use('style.mplstyle')
 
 def main():
     data_dir = "../data/"
     fig_dir = '../figures/'
-    mesh_file = os.path.join(data_dir, "SherFWHsolid1_grid.h5")
     data_file = os.path.join(data_dir, "SherFWHsolid1_p_raw_data_250.h5")
 
     info_dict = ga.utils.get_data_info(data_file, verbose=False)
