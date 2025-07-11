@@ -1,5 +1,6 @@
 import scipy.signal as sg
 
+
 def _butter_bandpass(lowcut, highcut, fs, order=5):
     # Butterworth bandpass filter design
     nyq = 0.5 * fs
@@ -12,7 +13,7 @@ def _butter_bandpass(lowcut, highcut, fs, order=5):
 def butter_bandpass_filter(data, lowcut, highcut, fs, order=2):
     '''
     Filter the data using a Butterworth bandpass filter.
-    
+
     Parameters
     ----------
     data : np.ndarray
